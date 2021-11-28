@@ -55,6 +55,16 @@ class manage extends Controller
         ]);
         $this->View("rightbar_view");
     }
+    public function tinhluong() {
+        $data = $this->thuongphat->GetAllThuongPhat("");
+        $this->View("leftbar_view",[
+            "type" => "tinhluong"
+        ]);
+        $this->View("tinhluong_view",[
+            "tinhluong" => $data
+        ]);
+        $this->View("rightbar_view");
+    }
     public function thongke() {
         $data = $this->employee->GetAllEmployee("");
         $this->View("leftbar_view",[

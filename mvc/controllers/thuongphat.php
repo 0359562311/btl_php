@@ -2,65 +2,52 @@
 
 class thuongphat extends Controller
 {
-    private $User;
-    private $Employee;
+    private $thuongphat;
 
     public function __construct()
     {
-        $this->User = $this->model("User");
-        $this->Employee = $this->model("ThuongPhatModel");
-    }
-
-    public function index()
-    {
-        $this->View("leftbar",[
-            "type" => "nhanvien"
-        ]);
-        $this->View("nhanvien", [
-            "nhanvien" => $data
-        ]);
-        $this->View("rightbar");
+        $this->thuongphat = $this->model("ThuongPhatModel");
     }
     public function sua() {
-        $nhanvienID = $_POST['nhanvienID'];
-        $hoVaTen = $_POST['hoVaTen'];
-        $diaChi = $_POST['diaChi'];
-        $soDienThoai = $_POST['soDienThoai'];
-        $email = $_POST['email'];
-        $chucVu = $_POST['chucVu'];
-        $this->Employee->UpdateInfoEmployee(
+        $tien = $_POST['tien'];
+        $phatID = $_POST['phatID'];
+        $ngay = $_POST['ngay'];
+        $ghichu = $_POST['ghichu'];
+        $nhanvienID = $_POST['NhanVienID'];
+        $managerID = intval($_SESSION['managerID']);
+        $this->thuongphat->UpdateThuongPhat(
+            intval($phatID),
             intval($nhanvienID),
-            $hoVaTen,
-            $diaChi,
-            $soDienThoai,
-            $email,
-            intval($chucVu)
+            $ghichu,
+            floatval($tien),
+            $managerID,
+            $ngay
         );
-        header("Location: /btl3/manage/nhanvien");
+        header("Location: /btl3/manage/thuongphat");
         exit();
     }
     public function them() {
-        $hoVaTen = $_POST['hoVaTen'];
-        $diaChi = $_POST['diaChi'];
-        $soDienThoai = $_POST['soDienThoai'];
-        $email = $_POST['email'];
-        $chucVu = $_POST['chucVu'];
-        $this->Employee->CreateEmployee(
-            $hoVaTen,
-            $diaChi,
-            $soDienThoai,
-            $email,
-            intval($chucVu)
+        $nhanvienID = $_POST['NhanVienID'];
+        $tien = $_POST['tien'];
+        $ngay = $_POST['ngay'];
+        $ghiChu = $_POST['ghiChu'];
+        $managerID = intval($_SESSION['managerID']);
+        $this->thuongphat->CreateThuongPhat(
+            $nhanvienID,
+            $ghiChu,
+            floatval($tien),
+            $managerID,
+            $ngay
         );
-        header("Location: /btl3/manage/nhanvien");
+        header("Location: /btl3/manage/thuongphat");
         exit();
     }
     public function xoa() {
-        $nhanvienID = $_POST['nhanvienID'];
-        $this->Employee->DeleteEmployee(
-            intval($nhanvienID)
+        $phatID = $_POST['phatID'];
+        $this->thuongphat->DeleteThuongPhat(
+            intval($phatID)
         );
-        header("Location: /btl3/manage/nhanvien");
+        header("Location: /btl3/manage/thuongphat");
         exit();
     }
 }

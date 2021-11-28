@@ -37,6 +37,9 @@
                         <a href="/btl3/manage/thuongphat" class="p-2 m-1 rounded list-group-item list-group-item-action <?php if($data['type'] == 'thuongphat'){echo 'active';} ?>">
                             <strong>Thưởng và phạt</strong>
                         </a>
+                        <a href="/btl3/manage/tinhluong" class="p-2 m-1 rounded list-group-item list-group-item-action <?php if($data['type'] == 'tinhluong'){echo 'active';} ?>">
+                            <strong>Tính lương</strong>
+                        </a>
                         <a href="/btl3/manage/thongke" class="p-2 m-1 rounded list-group-item list-group-item-action <?php if($data['type'] == 'thongke'){echo 'active';} ?>">
                             <strong>Thống kê</strong>
                         </a>

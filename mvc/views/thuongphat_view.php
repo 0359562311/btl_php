@@ -13,21 +13,29 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Quản lý giờ làm</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Quản lý thưởng và phạt</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button> 
                                         </div>
                                         <div class="modal-body">
-                                            <form action="/btl3/calam/sua" method="POST">
-                                                <input name="CaLamID" value="" id="calam-id" hidden="true">
+                                            <form action="/btl3/thuongphat/sua" method="POST">
+                                                <input name="phatID" value="" id="phat-id" hidden="true">
                                                 <div class="form-group">
-                                                    <label for="calam-gio" class="col-form-label">Số giờ:</label>
-                                                    <input type="number" step="any" class="form-control" id="calam-gio" name="soGio" value="">
+                                                    <label for="thuongphat-nhanvien" class="col-form-label">Mã nhân viên:</label>
+                                                    <input type="number" step="any" class="form-control" id="thuongphat-nhanvien" name="NhanVienID" value="">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="calam-ngay" class="col-form-label">Ngày:</label>
-                                                    <input type="date" class="form-control" id="calam-ngay" name="ngay">
+                                                    <label for="thuongphat-tien" class="col-form-label">Số tiền:</label>
+                                                    <input type="number" step="any" class="form-control" id="thuongphat-tien" name="tien" value="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="phat-ngay" class="col-form-label">Ngày:</label>
+                                                    <input type="date" class="form-control" id="phat-ngay" name="ngay">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="phat-ghichu" class="col-form-label">Ghi chú:</label>
+                                                    <input type="text" class="form-control" id="phat-ghichu" name="ghichu">
                                                 </div>
                                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy
                                                 </button>
@@ -43,24 +51,28 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Quản lý nhân viên</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Quản lý thưởng phạt</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button> 
                                         </div>
                                         <div class="modal-body">
-                                            <form action="/btl3/calam/them" method="POST">
+                                            <form action="/btl3/thuongphat/them" method="POST">
                                                 <div class="form-group">
-                                                    <label for="add-calam-nhanvienID" class="col-form-label">Mã nhân viên:</label>
-                                                    <input type="number" class="form-control" id="add-calam-nhanvienID" name="nhanvienID" value="">
+                                                    <label for="add-thuongphat-nhanvienID" class="col-form-label">Mã nhân viên:</label>
+                                                    <input type="number" class="form-control" id="add-thuongphat-nhanvienID" name="NhanVienID" value="">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="add-calam-sogio" class="col-form-label">Số giờ:</label>
-                                                    <input type="number" step="any" class="form-control" id="add-calam-sogio" name="soGio">
+                                                    <label for="add-thuongphat-sogio" class="col-form-label">Số tiền (Thưởng +, Phạt -):</label>
+                                                    <input type="number" step="any" class="form-control" id="add-thuongphat-sogio" name="tien">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="add-calam-ngay" class="col-form-label">Ngày:</label>
-                                                    <input type="date" class="form-control" id="add-calam-ngay" name="ngay">
+                                                    <label for="add-thuongphat-ngay" class="col-form-label">Ngày:</label>
+                                                    <input type="date" class="form-control" id="add-thuongphat-ngay" name="ngay">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="add-thuongphat-ghichu" class="col-form-label">Ghi chú:</label>
+                                                    <input type="text" class="form-control" id="add-thuongphat-ghichu" name="ghiChu">
                                                 </div>
                                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy
                                                 </button>
@@ -98,29 +110,27 @@
                                         <th scope="col">Số tiền</th>
                                         <th scope="col">Ngày</th>
                                         <th scope="col">Ghi chú</th>
-                                        <th scope="col">Người thực hiện</th>
                                         <th scope="col">Tùy chọn</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <?php foreach($data['thuongphat'] as $key=>$value): ?>
                                         <tr>
-                                            <th scope="row"><?php echo $value['nhanvienID']; ?></th>
+                                            <th scope="row"><?php echo $value['NhanVienID']; ?></th>
                                             <td><?php echo $value['hoVaTen']; ?></td>
                                             <td><?php echo $value['Tien']; ?></td>
                                             <td><?php echo $value['ngay']; ?></td>
                                             <td><?php echo $value['GhiChu']; ?></td>
-                                            <td><?php echo $value['managerID']; ?></td>
                                             <td>
                                                 <div class="dropdown">
                                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenu" 
                                                             data-toggle="dropdown" aria-expanded="false">
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-                                                        <button class="dropdown-item text-success" type="button" id="sua-calam-<?php echo $value['CaLamID']; ?>"
+                                                        <button class="dropdown-item text-success" type="button" id="sua-thuongphat-<?php echo $value['phatID']; ?>"
                                                                 data-toggle="modal" data-target="#modalSua">Sửa
                                                         </button>
-                                                        <button class="dropdown-item text-danger" type="button" id="xoa-calam-<?php echo $value['CaLamID']; ?>"
+                                                        <button class="dropdown-item text-danger" type="button" id="xoa-thuongphat-<?php echo $value['phatID']; ?>"
                                                                 data-toggle="modal" data-target="#modalDelete">Xóa
                                                         </button>
 
@@ -146,11 +156,11 @@
                                                     Thao tác này không thể quay lại
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <form action="/btl3/calam/xoa" method="POST">
+                                                    <form action="/btl3/thuongphat/xoa" method="POST">
                                                         <button type="button" class="btn btn-secondary"
                                                                 data-dismiss="modal">Close
                                                         </button>
-                                                        <input hidden="true" id="xoa-calam" name="CaLamID" value="">
+                                                        <input hidden="true" id="xoa-thuongphat" name="phatID" value="">
                                                         <button type="submit" class="btn btn-danger">
                                                             Oke
                                                         </button>
@@ -180,16 +190,18 @@
 
 
 <script type="text/javascript">
-    <?php foreach($data['calam'] as $key=>$value): ?>
-        $(document).on("click", "#sua-calam-<?php echo $value['CaLamID']; ?>", function () {
-            $("#calam-id").val("<?php echo $value['CaLamID']; ?>");
-            $("#calam-gio").val("<?php echo $value['SoGio']; ?>");
-            $("#calam-ngay").val("<?php echo $value['Ngay']; ?>");
+    <?php foreach($data['thuongphat'] as $key=>$value): ?>
+        $(document).on("click", "#sua-thuongphat-<?php echo $value['phatID']; ?>", function () {
+            $("#phat-id").val("<?php echo $value['phatID']; ?>");
+            $("#thuongphat-tien").val("<?php echo $value['Tien']; ?>");
+            $("#phat-ghichu").val("<?php echo $value['GhiChu']; ?>");
+            $("#phat-ngay").val("<?php echo $value['ngay']; ?>");
+            $("#thuongphat-nhanvien").val("<?php echo $value['NhanVienID']; ?>");
         });
     <?php endforeach; ?>
-    <?php foreach($data['calam'] as $key=>$value): ?>
-        $(document).on("click", "#xoa-calam-<?php echo $value['CaLamID']; ?>", function () {
-            $(".modal-footer #xoa-calam").val("<?php echo $value['CaLamID']; ?>");
+    <?php foreach($data['thuongphat'] as $key=>$value): ?>
+        $(document).on("click", "#xoa-thuongphat-<?php echo $value['phatID']; ?>", function () {
+            $("#xoa-thuongphat").val("<?php echo $value['phatID']; ?>");
         });
     <?php endforeach; ?>
 </script>
