@@ -66,11 +66,13 @@ class manage extends Controller
         $this->View("rightbar_view");
     }
     public function thongke() {
-        $data = $this->employee->GetAllEmployee("");
+        $data = array();
+        $data['best'] = $this->employee->GetThreeBestEmployee("");
+        $data['hardest'] = $this->employee->GetThreeHardestEmployee("");
         $this->View("leftbar_view",[
             "type" => "thongke"
         ]);
-        $this->View("thongke_view");
+        $this->View("thongke_view", $data);
         $this->View("rightbar_view");
     }
 }

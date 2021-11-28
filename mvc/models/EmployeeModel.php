@@ -91,6 +91,22 @@ class EmployeeModel extends Database
         }
         return $result;
     }
+
+    public function GetThreeBestEmployee() {
+        $query = "SELECT nhanvien.nhanvienID, nhanvien.hoVaTen, SUM(thuongphat.Tien) as tong FROM `nhanvien` INNER JOIN thuongphat on nhanvien.nhanvienID = thuongphat.NhanVienID GROUP BY nhanvien.nhanvienID ORDER by tong desc limit 3;";
+        $statement = $this->connect->prepare($query);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        return $result;
+    }
+
+    public function GetThreeHardestEmployee() {
+        $query = "SELECT nhanvien.nhanvienID, nhanvien.hoVaTen, SUM(calam.SoGio) as tong FROM `nhanvien` INNER JOIN calam on nhanvien.nhanvienID = calam.NhanVienID GROUP BY nhanvien.nhanvienID ORDER by tong desc limit 3;";
+        $statement = $this->connect->prepare($query);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        return $result;
+    }
 }
 
 ?>

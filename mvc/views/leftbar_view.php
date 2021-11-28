@@ -25,7 +25,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-2 rounded ">
-                    <a class="navbar-brand" href="#"><h1><strong>LOGO</strong></h1></a>
+                    <a class="navbar-brand" href="/btl3/home"><h1><strong>Trang chủ</strong></h1></a>
                     <div class="list-group mt-5">
                         <a href="/btl3/manage/nhanvien" class="p-2 m-1 rounded list-group-item list-group-item-action <?php if($data['type'] == 'nhanvien'){echo 'active';} ?>"
                            aria-current="true">

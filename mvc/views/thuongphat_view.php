@@ -1,6 +1,6 @@
 <div class="col-8  rounded ml-1 mt-3">
                     <div class="d-flex bd-highlight mb-3">
-                        <div class="mr-auto p-2 bd-highlight"><h1><strong>Giờ làm</strong></h1></div>
+                        <div class="mr-auto p-2 bd-highlight"><h1><strong>Thưởng và phạt</strong></h1></div>
                         <div class="p-2 bd-highlight">
                             <button class="btn btn-primary" data-toggle="modal" data-target="#modalThem"
                                     data-whatever="@mdo">
