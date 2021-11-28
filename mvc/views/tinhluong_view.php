@@ -7,12 +7,12 @@
                         <div class="d-flex bd-highlight my-3">
                             <div class="mr-auto px-4 bd-highlight"><h4><strong>Tất cả</strong></h4></div>
                             <div class="px-4 bd-highlight">
-                                <input type="date" id="start-date" class="date">
+                                <input type="date" id="datepicker" class="datepicker" onchange="handler(event);">
                             </div>
                         </div>
                         <div class="bg-light m-4 p-3 rounded " style="max-height: 500px">
                             <div class="overflow-auto" style="height: 400px; width: 100%; overflow: auto">
-                                <table class="table table-striped">
+                                <table class="table table-striped" id="tinhluongtable">
                                     <thead>
                                     <tr>
                                         <th scope="col">Mã nhân viên</th>
@@ -20,7 +20,7 @@
                                         <th scope="col">Lương</th>
                                     </tr>
                                     </thead>
-                                    <tbody id="tinhluongbody">
+                                    <tbody>
                                     <?php foreach($data['thuongphat'] as $key=>$value): ?>
                                         <tr>
                                             <th scope="row"><?php echo $value['NhanVienID']; ?></th>
@@ -50,18 +50,14 @@
 
 
 <script type="text/javascript">
-    $("#start-date")
-    .datepicker({
-        onSelect: function(date, instance) {
-            alert('http://localhost/btl3/api/tinhluong/'.concat(date));
-            $.ajax
+    function handler(e){
+        $.ajax
             ({
-                method: "Get",
-                // url: '<?php //echo base_url()."api/tinhluong";?>',
-                url: 'http://localhost/btl3/api/tinhluong/'.concat(date)
-            }).done(function (response){
-                alert(response);
-                $('#tinhluongbody').empty();
+                type: "Get",
+                url: 'http://localhost/btl3/api/tinhluong/'.concat(e.target.value),
+            }).done(function (responseString){
+                const response = JSON.parse(responseString);
+                $('#tinhluongtable tbody').empty();
                 for(var i=0; i<response.length;i++) {
                     var html1 = `
                         <tr>
@@ -70,9 +66,8 @@
                             <td>${response[i].tp}</td>
                         </tr>
                     `;
-                    $('#tinhluongbody').append(html1);
+                    $('#tinhluongtable > tbody:last-child').append(html1);
                 }
-            });  
-        }
-    });
+            });
+    }
 </script>

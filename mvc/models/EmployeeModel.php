@@ -65,7 +65,7 @@ class EmployeeModel extends Database
     }
 
     public function GetAllSalary($from) {
-        $query1 = "SELECT n1.nhanvienID, n1.hoVaTen, SUM(Tien) as tp from (nhanvien as n1 LEFT JOIN thuongphat as tp on n1.nhanvienID = tp.NhanVienID and tp.ngay > ?) GROUP BY n1.nhanvienID;";
+        $query1 = "SELECT n1.nhanvienID, n1.hoVaTen, SUM(Tien) as tp from (nhanvien as n1 LEFT JOIN thuongphat as tp on n1.nhanvienID = tp.NhanVienID and tp.ngay >= ?) GROUP BY n1.nhanvienID;";
         $query2 = "SELECT n1.nhanvienID, (SUM(sogio) * chucvu.HeSo * 50000) as luong from (nhanvien as n1 JOIN calam on n1.nhanvienID = calam.NhanVienID JOIN chucvu on chucvu.ChucVuID = n1.chucvuID and calam.Ngay >= ?) GROUP BY n1.nhanvienID;";
         $statement = $this->connect->prepare($query1);
         $statement->bindValue(1, $from, PDO::PARAM_STR);
