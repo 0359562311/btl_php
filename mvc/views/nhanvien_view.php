@@ -127,6 +127,7 @@
                                         <th scope="col">Tên</th>
                                         <th scope="col">Chức vụ</th>
                                         <th scope="col">Số điện thoại</th>
+                                        <th scope="col">Email</th>
                                         <th scope="col">Tùy chọn</th>
                                     </tr>
                                     </thead>
@@ -138,6 +139,7 @@
                                             <td><?php echo $value['hoVaTen']; ?></td>
                                             <td><?php echo $value['TenChucVu']; ?></td>
                                             <td><?php echo $value['SoDienThoai']; ?></td>
+                                            <td><?php echo $value['email']; ?></td>
                                             <td>
                                                 <div class="dropdown">
                                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenu" 
