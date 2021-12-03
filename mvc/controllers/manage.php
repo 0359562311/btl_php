@@ -15,16 +15,6 @@ class manage extends Controller
 
     public function index()
     {
-        $this->View("leftbar_view",[
-            "type" => "nhanvien"
-        ]);
-        $this->View("nhanvien_view", [
-            "nhanvien" => $data
-        ]);
-        $this->View("rightbar_view");
-    }
-
-    public function nhanvien() {
         $data = $this->employee->GetAllEmployee("");
         $this->View("leftbar_view",[
             "type" => "nhanvien"
@@ -35,28 +25,42 @@ class manage extends Controller
         $this->View("rightbar_view");
     }
 
-    public function calam() {
-        $data = $this->calam->GetAllCaLam("");
+    public function nhanvien($q="") {
+        $data = $this->employee->GetAllEmployee($q);
+        $this->View("leftbar_view",[
+            "type" => "nhanvien"
+        ]);
+        $this->View("nhanvien_view", [
+            "nhanvien" => $data,
+            "query" => $q
+        ]);
+        $this->View("rightbar_view");
+    }
+
+    public function calam($q="") {
+        $data = $this->calam->GetAllCaLam($q);
         $this->View("leftbar_view",[
             "type" => "calam"
         ]);
         $this->View("calam_view",[
-            "calam" => $data
+            "calam" => $data,
+            "query"=> $q
         ]);
         $this->View("rightbar_view");
     }
-    public function thuongphat() {
-        $data = $this->thuongphat->GetAllThuongPhat("");
+    public function thuongphat($q="") {
+        $data = $this->thuongphat->GetAllThuongPhat($q);
         $this->View("leftbar_view",[
             "type" => "thuongphat"
         ]);
         $this->View("thuongphat_view",[
-            "thuongphat" => $data
+            "thuongphat" => $data,
+            "query" => $q
         ]);
         $this->View("rightbar_view");
     }
-    public function tinhluong() {
-        $data = $this->thuongphat->GetAllThuongPhat("");
+    public function tinhluong($q="") {
+        $data = $this->thuongphat->GetAllThuongPhat($q);
         $this->View("leftbar_view",[
             "type" => "tinhluong"
         ]);
@@ -67,8 +71,8 @@ class manage extends Controller
     }
     public function thongke() {
         $data = array();
-        $data['best'] = $this->employee->GetThreeBestEmployee("");
-        $data['hardest'] = $this->employee->GetThreeHardestEmployee("");
+        $data['best'] = $this->employee->GetThreeBestEmployee();
+        $data['hardest'] = $this->employee->GetThreeHardestEmployee();
         $this->View("leftbar_view",[
             "type" => "thongke"
         ]);

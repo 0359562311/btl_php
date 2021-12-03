@@ -2,7 +2,7 @@
 
 class App
 {
-    //example url: http://localhost:1245/list/teacher/1
+    //example url: http://localhost/btl3/controller/action/params
     protected $controller = "home"; //controller: list
     protected $action = "index"; //teacher: teacher
     protected $param = []; //param: 1

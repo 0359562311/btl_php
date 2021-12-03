@@ -78,13 +78,19 @@
                             <div class="mr-auto px-4 bd-highlight"><h4><strong>Tất cả</strong></h4></div>
                             <div class="px-4 bd-highlight">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Tìm kiếm theo tên, mã, .."
-                                           aria-label="Search" aria-describedby="button-addon2">
+                                    <input type="text" class="form-control" placeholder="Tìm kiếm theo tên, mã, .." value="<?php echo $data['query']; ?>"
+                                           aria-label="Search" id="searchQuery" aria-describedby="button-addon2">
                                     <div class="input-group-append">
-                                        <button class="btn btn-dark" type="button" id="button-addon2">
+                                        <button class="btn btn-dark" type="button" id="button-addon2" onclick="searchNhanVien()" >
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
+                                    <script>
+                                        function searchNhanVien() {
+                                            var t = document.getElementById("searchQuery").value;
+                                            window.location.replace("http://localhost/btl3/manage/calam/".concat(t));
+                                        }
+                                    </script>
                                 </div>
                             </div>
                         </div>

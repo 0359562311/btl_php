@@ -5,9 +5,10 @@ class CaLamModel extends Database
 
     public function GetAllCaLam($q)
     {
-        $query = "SELECT * FROM `calam` INNER JOIN `nhanvien` on calam.NhanVienID = nhanvien.nhanvienID order by Ngay DESC;";
+        $query = "SELECT * FROM `calam` INNER JOIN `nhanvien` on calam.NhanVienID = nhanvien.nhanvienID and nhanvien.hoVaTen like ? order by Ngay DESC;";
         try {
             $statement = $this->connect->prepare($query);
+            $statement->bindValue(1, "%" . $q . "%", PDO::PARAM_STR);
             $statement->execute();
             $result = $statement->fetchAll();
             return $result;

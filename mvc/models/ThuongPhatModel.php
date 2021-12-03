@@ -5,9 +5,10 @@ class ThuongPhatModel extends Database
 
     public function GetAllThuongPhat($q)
     {
-        $query = "SELECT * FROM `thuongphat` INNER JOIN nhanvien on thuongphat.NhanVienID = nhanvien.nhanvienID";
+        $query = "SELECT * FROM `thuongphat` INNER JOIN nhanvien on thuongphat.NhanVienID = nhanvien.nhanvienID and nhanvien.hoVaTen like ?";
         try {
             $statement = $this->connect->prepare($query);
+            $statement->bindValue(1, "%" . $q . "%", PDO::PARAM_STR);
             $statement->execute();
             $result = $statement->fetchAll();
             return $result;
